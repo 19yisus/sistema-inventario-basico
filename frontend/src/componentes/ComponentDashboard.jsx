@@ -1,6 +1,6 @@
 // SUB-COMPONENTS
-import Navbar from '../subComponentes/Navbar'
-import Sidebar from '../subComponentes/Sidebar'
+import Navbar from '../subComponentes/SubComponentNavbar'
+import Sidebar from '../subComponentes/SubComponentSidebar'
 
 export default function Dashboard(){
     return (
