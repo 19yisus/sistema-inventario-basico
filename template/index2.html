@@ -6,11 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./css/styles.css">
+    <style media="screen">
+      #menu{
+        /* overflow: hidden; */
+        -webkit-transition: width 1s;
+      }
+      #menu:hover{
+        width:11em;
+      }
+    </style>
     <title>Document</title>
 </head>
 <body>
     <!-- https://tailwindcomponents.com/component/responsive-admin-template -->
-    <div class="flex flex-col bg-gray-900 h-screen w-screen p-0">
+    <div class="flex flex-col bg-gray-900 h-screen w-screen p-0 relative">
         <header class="z-20 fixed flex flex-wrap bg-gray-900 flex-row justify-between border-b-2 border-gray-600 text-white w-full">
             <nav class="flex flex-row items-center space-x-2">
                 <a href="#" class="p-3 border-r-2 border-gray-600">
@@ -43,24 +52,37 @@
                 <img src="./profile-3.jpg" class="bg-cover rounded-full h-8" alt="Profile Photo">
             </div>
         </header>
-        <aside class="z-10 fixed flex flex-col h-screen w-16 border-r-2 border-gray-600 bg-gray-900 hover:w-64 transition-all duration-300">
-            <nav class="grid grid-cols-1 text-center gap-0 mt-16 w-full">
-                <a href="#" class="border-r-2 border-blue-700 bg-blue-600 opacity-50 pt-2">
-                    <i class='bx bxs-grid fill-current text-2xl text-white'></i>
-                </a>
-                <a href="#" class="opacity-75 py-1">
-                    <i class='bx bxs-bell fill-current text-2xl text-white'></i>
-                </a>
-                <a href="#" class="opacity-75 py-1">
-                    <i class='bx bxs-edit fill-current text-2xl text-white'></i>
-                </a>
-                <a href="#" class="opacity-75 py-1">
-                    <i class='bx bxs-user fill-current text-2xl text-white'></i>
-                </a>
-                <a href="#" class="opacity-75 py-1">
-                    <i class='bx bx-log-out fill-current text-2xl text-white'></i>
-                </a>
-            </nav>
+        <aside id="menu" class="z-10 absolute flex flex-col h-screen w-16 hover:w-36 space-y-10 border-r-2 border-gray-600 bg-gray-900 overflow-x-hidden text-white">
+            <div class="relative w-auto mt-16">
+              <a href="#" class="absolute top-0 w-full inline-flex flex-row items-center justify-between h-10 space-x-5 border-r-2 border-blue-700  bg-blue-600 pl-5 px-3">
+                  <i class='bx bxs-grid fill-current text-2xl text-white float-left'></i>
+                  <strong class="float-right font-semibold px-4">Dashboard</strong>
+              </a>
+            </div>
+            <div class="relative w-auto">
+              <a href="#" class="absolute top-0 w-full inline-flex flex-row items-center justify-between space-x-5 pl-5 px-3">
+                  <i class='bx bxs-bell fill-current text-2xl text-white float-left'></i>
+                  <strong class="float-right font-semibold px-4">Notificaciones</strong>
+              </a>
+            </div>
+            <div class="relative w-auto">
+              <a href="#" class="absolute top-0 w-full inline-flex flex-row items-center justify-between space-x-5 pl-5 px-3">
+                  <i class='bx bxs-edit fill-current text-2xl text-white float-left'></i>
+                  <strong class="float-right font-semibold px-4">Registros</strong>
+              </a>
+            </div>
+            <div class="relative w-auto">
+              <a href="#" class="absolute top-0 w-full inline-flex flex-row items-center justify-between space-x-5 pl-5 px-3">
+                  <i class='bx bxs-user fill-current text-2xl text-white float-left'></i>
+                  <strong class="float-right font-semibold px-4">Mi perfil</strong>
+              </a>
+            </div>
+            <div class="relative w-auto">
+              <a href="#" class="absolute top-0 w-full inline-flex flex-row items-center justify-between space-x-5 pl-5 px-3">
+                  <i class='bx bx-log-out fill-current text-2xl text-white float-left'></i>
+                  <strong class="float-right font-semibold px-4">Salir</strong>
+              </a>
+            </div>
         </aside>
 
         <div class="ml-16 p-5 mt-14">
