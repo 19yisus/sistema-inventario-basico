@@ -1,10 +1,11 @@
-import {Router,Request,Response} from 'express'
-
+import {Router} from 'express'
+import bodyParser from "body-parser"
+import ControladorProducto from "../../../controlador/c_producto"
 const router=Router()
-// router.get("/test",() => {
-//     console.log("hola")
-// })
-// router.post("registrar")
+
+router.use(bodyParser.json())
+
+router.post("/registrar",ControladorProducto.registrar)
 // router.get()
 // router.put()
 // router.get()
