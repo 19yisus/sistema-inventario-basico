@@ -100,7 +100,28 @@ const ControladorProducto={
         res.writeHead(200,{"Content-Type":"application/json"})
         res.write(JSON.stringify(respuesta))
         res.end()
-    }
+    },
+
+    consultarPorNombre:async (req:Request,res:Response) => {
+        const respuesta={mensaje:"",datos:[],estadoRespuesta:false,tipoAlerta:""}
+        let {nombreProducto} = req.params
+        let Producto:ModeloProducto=new ModeloProducto()
+        let resultProducto:QueryResult= await Producto.consultarPorNombre(nombreProducto)
+        if(resultProducto.rowCount>0){
+            respuesta.datos=resultProducto.rows as Array<never>
+            respuesta.mensaje=`se a encontrado un total de ${resultProducto.rowCount} ${(resultProducto.rowCount===1)?"producto":"productos"} que coinciden con lo buscado`
+            respuesta.estadoRespuesta=true
+            respuesta.tipoAlerta="success"
+        }
+        else{
+            respuesta.mensaje=`numero de resultado 0 (no se a encontrado ningun producto con este nombre =>>> ${nombreProducto})`
+            respuesta.estadoRespuesta=true
+            respuesta.tipoAlerta="info"
+        }
+        res.writeHead(200,{"Content-Type":"application/json"})
+        res.write(JSON.stringify(respuesta))
+        res.end()
+    } 
 
 }
 

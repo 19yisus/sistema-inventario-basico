@@ -56,6 +56,11 @@ class ModeloProducto extends DriverPostgreSQL{
         return await this.query(SQL)
     }
 
+    async consultarPorNombre(nombreProducto:string):Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tproducto WHERE nombre_producto LIKE '%${nombreProducto}%' ;`
+        return await this.query(SQL)
+    }
+
 
 
 

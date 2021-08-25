@@ -64,5 +64,11 @@ class ModeloProducto extends driver_postgresql_1.default {
             return yield this.query(SQL);
         });
     }
+    consultarPorNombre(nombreProducto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tproducto WHERE nombre_producto LIKE '%${nombreProducto}%' ;`;
+            return yield this.query(SQL);
+        });
+    }
 }
 exports.default = ModeloProducto;
