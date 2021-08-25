@@ -41,5 +41,17 @@ class ModeloProducto extends driver_postgresql_1.default {
             return yield this.query(SQL);
         });
     }
+    consultarTodos() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tproducto`;
+            return yield this.query(SQL);
+        });
+    }
+    consultar() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tproducto WHERE id_producto=${this.id_producto};`;
+            return yield this.query(SQL);
+        });
+    }
 }
 exports.default = ModeloProducto;

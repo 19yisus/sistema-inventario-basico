@@ -6,7 +6,8 @@ const router=Router()
 router.use(bodyParser.json())
 
 router.post("/registrar",ControladorProducto.registrar)
-// router.get()
+router.get("/consultar-todos",ControladorProducto.consultarTodos)
+router.get("/consultar/:id",ControladorProducto.consultar)
 // router.put()
 // router.get()
 

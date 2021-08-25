@@ -36,6 +36,16 @@ class ModeloProducto extends DriverPostgreSQL{
         return await this.query(SQL);
     }
 
+    async consultarTodos():Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tproducto`;
+        return await this.query(SQL)
+    }
+
+    async consultar():Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tproducto WHERE id_producto=${this.id_producto};`
+        return await this.query(SQL)
+    }
+
 
 
 

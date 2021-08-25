@@ -9,4 +9,6 @@ const c_producto_1 = __importDefault(require("../../../controlador/c_producto"))
 const router = express_1.Router();
 router.use(body_parser_1.default.json());
 router.post("/registrar", c_producto_1.default.registrar);
+router.get("/consultar-todos", c_producto_1.default.consultarTodos);
+router.get("/consultar/:id", c_producto_1.default.consultar);
 exports.default = router;
