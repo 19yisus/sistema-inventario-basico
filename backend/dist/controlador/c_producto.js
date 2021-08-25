@@ -15,47 +15,47 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const m_producto_1 = __importDefault(require("../modelo/m_producto"));
 const ControladorProducto = {
     registrar: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const respuesta = { mensaje: "", idRegistroProducto: null, estado_respuesta: false, tipo_alerta: "" };
+        const respuesta = { mensaje: "", idProducto: null, estadoRespuesta: false, tipoAlerta: "" };
         let { producto } = req.body;
         let Producto = new m_producto_1.default();
         Producto.setDatos(producto);
         let resultProducto = yield Producto.registrar();
         if (resultProducto.rowCount > 0) {
             respuesta.mensaje = "registro completado";
-            respuesta.estado_respuesta = true;
-            respuesta.tipo_alerta = "success";
-            respuesta.idRegistroProducto = resultProducto.rows[0].id_producto;
+            respuesta.estadoRespuesta = true;
+            respuesta.tipoAlerta = "success";
+            respuesta.idProducto = resultProducto.rows[0].id_producto;
         }
         else {
             respuesta.mensaje = "error al registrar";
-            respuesta.estado_respuesta = true;
-            respuesta.tipo_alerta = "danger";
+            respuesta.estadoRespuesta = true;
+            respuesta.tipoAlerta = "danger";
         }
         res.writeHead(200, { "Content-Type": "application/json" });
         res.write(JSON.stringify(respuesta));
         res.end();
     }),
     consultarTodos: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const respuesta = { mensaje: "", datos: [], estado_respuesta: false, tipo_alerta: "" };
+        const respuesta = { mensaje: "", datos: [], estadoRespuesta: false, tipoAlerta: "" };
         let Producto = new m_producto_1.default();
         let resultProducto = yield Producto.consultarTodos();
         if (resultProducto.rowCount > 0) {
             respuesta.datos = resultProducto.rows;
             respuesta.mensaje = "consulta completada";
-            respuesta.estado_respuesta = true;
-            respuesta.tipo_alerta = "success";
+            respuesta.estadoRespuesta = true;
+            respuesta.tipoAlerta = "success";
         }
         else {
             respuesta.mensaje = "error al consultar no hay registro en la base de datos";
-            respuesta.estado_respuesta = true;
-            respuesta.tipo_alerta = "danger";
+            respuesta.estadoRespuesta = true;
+            respuesta.tipoAlerta = "warning";
         }
         res.writeHead(200, { "Content-Type": "application/json" });
         res.write(JSON.stringify(respuesta));
         res.end();
     }),
     consultar: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const respuesta = { mensaje: "", datos: [], estado_respuesta: false, tipo_alerta: "" };
+        const respuesta = { mensaje: "", datos: [], estadoRespuesta: false, tipoAlerta: "" };
         let { id } = req.params;
         let Producto = new m_producto_1.default();
         Producto.setIdproducto(id);
@@ -63,13 +63,42 @@ const ControladorProducto = {
         if (resultProducto.rowCount > 0) {
             respuesta.datos = resultProducto.rows;
             respuesta.mensaje = "consulta completada";
-            respuesta.estado_respuesta = true;
-            respuesta.tipo_alerta = "success";
+            respuesta.estadoRespuesta = true;
+            respuesta.tipoAlerta = "success";
         }
         else {
-            respuesta.mensaje = "error el elemento consultado no existe en la bas de datos";
-            respuesta.estado_respuesta = true;
-            respuesta.tipo_alerta = "danger";
+            respuesta.mensaje = "error el elemento consultado no existe en la base de datos";
+            respuesta.estadoRespuesta = true;
+            respuesta.tipoAlerta = "danger";
+        }
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.write(JSON.stringify(respuesta));
+        res.end();
+    }),
+    actualizar: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const respuesta = { mensaje: "", idProducto: null, estadoRespuesta: false, tipoAlerta: "" };
+        let { producto } = req.body;
+        let { id } = req.params;
+        if (producto.id_producto === id) {
+            let Producto = new m_producto_1.default();
+            Producto.setDatos(producto);
+            let resultProducto = yield Producto.actualizar();
+            if (resultProducto.rowCount > 0) {
+                respuesta.mensaje = "actualizacion completada";
+                respuesta.estadoRespuesta = true;
+                respuesta.tipoAlerta = "success";
+                respuesta.idProducto = resultProducto.rows[0].id_producto;
+            }
+            else {
+                respuesta.mensaje = "error al actualizar por que el elemento no existe en la base de datos";
+                respuesta.estadoRespuesta = true;
+                respuesta.tipoAlerta = "warning";
+            }
+        }
+        else {
+            respuesta.mensaje = "error al actualizar el codigo del recuros que quiere actualizar no coincide con el codigo que esta enviando ";
+            respuesta.estadoRespuesta = true;
+            respuesta.tipoAlerta = "warning";
         }
         res.writeHead(200, { "Content-Type": "application/json" });
         res.write(JSON.stringify(respuesta));

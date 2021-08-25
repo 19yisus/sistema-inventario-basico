@@ -8,7 +8,7 @@ router.use(bodyParser.json())
 router.post("/registrar",ControladorProducto.registrar)
 router.get("/consultar-todos",ControladorProducto.consultarTodos)
 router.get("/consultar/:id",ControladorProducto.consultar)
-// router.put()
+router.put("/actualizar/:id",ControladorProducto.actualizar)
 // router.get()
 
 export default router

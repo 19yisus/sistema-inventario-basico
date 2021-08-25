@@ -53,5 +53,16 @@ class ModeloProducto extends driver_postgresql_1.default {
             return yield this.query(SQL);
         });
     }
+    actualizar() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `UPDATE tproducto SET
+        nombre_producto='${this.nombre_producto}',
+        estatus_producto='${this.estatus_producto}'
+        WHERE
+        id_producto=${this.id_producto} RETURNING id_producto;
+        `;
+            return yield this.query(SQL);
+        });
+    }
 }
 exports.default = ModeloProducto;

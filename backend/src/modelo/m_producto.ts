@@ -46,6 +46,16 @@ class ModeloProducto extends DriverPostgreSQL{
         return await this.query(SQL)
     }
 
+    async actualizar():Promise<QueryResult>{
+        const SQL:string=`UPDATE tproducto SET
+        nombre_producto='${this.nombre_producto}',
+        estatus_producto='${this.estatus_producto}'
+        WHERE
+        id_producto=${this.id_producto} RETURNING id_producto;
+        `
+        return await this.query(SQL)
+    }
+
 
 
 
