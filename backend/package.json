@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./dist/index.js",
+    "type": "tsc -w",
+    "test": "jest --verbose"
   },
   "author": "",
   "license": "MIT",
@@ -31,5 +33,8 @@
     "morgan": "1.10.0",
     "nodemon": "2.0.12",
     "pg": "8.7.1"
+  },
+  "jest":{
+    "testEnvironment":"node"
   }
 }
