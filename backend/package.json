@@ -34,7 +34,11 @@
     "nodemon": "2.0.12",
     "pg": "8.7.1"
   },
-  "jest":{
-    "testEnvironment":"node"
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "@types/supertest": "^2.0.11",
+    "supertest": "^6.1.6"
   }
 }
