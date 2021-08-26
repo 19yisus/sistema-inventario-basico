@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon ./dist/index.js",
     "type": "tsc -w",
-    "test": "jest --verbose"
+    "test": "jest ./dist --verbose --silent"
   },
   "author": "",
   "license": "MIT",
