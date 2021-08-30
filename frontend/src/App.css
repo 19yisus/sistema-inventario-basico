@@ -7,9 +7,13 @@ body {
     -moz-osx-font-smoothing: grayscale;
   }
 
+  body, #menu{
+    background-color: #292e31;
+  }
+
   #menu{
     -webkit-transition: width 1s;
   }
   #menu:hover{
-    width:12em;
+    width:14em;
   }
