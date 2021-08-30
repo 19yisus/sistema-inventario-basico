@@ -1,4 +1,4 @@
-import { Pool, QueryResult } from "pg";
+import { Pool,PoolClient, QueryResult } from "pg";
 
 class DriverPostgreSQL {
 
@@ -10,7 +10,7 @@ class DriverPostgreSQL {
             user:"gabriel",
             host:"localhost",
             password:"stark",
-            database:"inventario"
+            database:"sistema_inventario"
         }
 
         this.database=new Pool(config);
@@ -44,14 +44,12 @@ class DriverPostgreSQL {
                 console.log("cerrando la conexion con la base de datos")})
             },1000)
         });
-
         return datos
     }
 
     async query(sql:string):Promise<QueryResult>{
         return await this.conexion2(sql)
     }
-
 
 }
 

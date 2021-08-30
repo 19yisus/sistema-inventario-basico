@@ -4,10 +4,10 @@ import cors from 'cors'
 
 const app=express()
 
-const nombreApi:string="api-wisp"
-
 app.set("puerto",8080)
-
+// import modulos
+import moduloProducto from './rutas/configuración/producto'
+app.use("/configuracion/producto",moduloProducto)
 
 app.use(logger("dev"))
 .use(cors())
