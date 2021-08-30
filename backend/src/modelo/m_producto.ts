@@ -3,13 +3,13 @@ import DriverPostgreSQL from "../driver/driver_postgresql"
 
 class ModeloProducto extends DriverPostgreSQL{
 
-    private id_producto:string;
+    private id_producto:number;
     private nombre_producto:string;
     private estatus_producto:string;
 
     constructor(){
         super();
-        this.id_producto="";
+        this.id_producto=0;
         this.nombre_producto="";
         this.estatus_producto="";
     }
@@ -20,7 +20,7 @@ class ModeloProducto extends DriverPostgreSQL{
         this.estatus_producto=producto.estatus_producto;
     }
 
-    setIdproducto(id:string):void{
+    setIdproducto(id:any):void{
         this.id_producto=id
     }
 
@@ -61,8 +61,15 @@ class ModeloProducto extends DriverPostgreSQL{
         return await this.query(SQL)
     }
 
+    async borrarDatos():Promise<QueryResult>{
+        const SQL:string=`DELETE FROM tproducto;`
+        return await this.query(SQL)
+    }
 
-
+    async reiniciarSerialIndex():Promise<QueryResult>{
+        const SQL:string=`ALTER SEQUENCE tproducto_id_producto_seq RESTART WITH 1`
+        return await this.query(SQL)
+    }
 
 }
 

@@ -16,7 +16,7 @@ const driver_postgresql_1 = __importDefault(require("../driver/driver_postgresql
 class ModeloProducto extends driver_postgresql_1.default {
     constructor() {
         super();
-        this.id_producto = "";
+        this.id_producto = 0;
         this.nombre_producto = "";
         this.estatus_producto = "";
     }
@@ -67,6 +67,18 @@ class ModeloProducto extends driver_postgresql_1.default {
     consultarPorNombre(nombreProducto) {
         return __awaiter(this, void 0, void 0, function* () {
             const SQL = `SELECT * FROM tproducto WHERE nombre_producto LIKE '%${nombreProducto}%' ;`;
+            return yield this.query(SQL);
+        });
+    }
+    borrarDatos() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `DELETE FROM tproducto;`;
+            return yield this.query(SQL);
+        });
+    }
+    reiniciarSerialIndex() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `ALTER SEQUENCE tproducto_id_producto_seq RESTART WITH 1`;
             return yield this.query(SQL);
         });
     }

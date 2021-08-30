@@ -75,9 +75,7 @@ const ControladorProducto={
     actualizar:async (req:Request,res:Response) => {
         const respuesta={mensaje:"",idProducto:null,estadoRespuesta:false,tipoAlerta:""}
         let {producto} = req.body
-        let {id} = req.params
-        if(producto.id_producto===id){
-            let Producto:ModeloProducto=new ModeloProducto()
+        let Producto:ModeloProducto=new ModeloProducto()
             Producto.setDatos(producto)
             let resultProducto:QueryResult= await Producto.actualizar()
             if(resultProducto.rowCount>0){
@@ -91,12 +89,6 @@ const ControladorProducto={
                 respuesta.estadoRespuesta=true
                 respuesta.tipoAlerta="warning"
             }
-        }
-        else{
-            respuesta.mensaje="error al actualizar el codigo del recuros que quiere actualizar no coincide con el codigo que esta enviando "
-            respuesta.estadoRespuesta=true
-            respuesta.tipoAlerta="warning"
-        }
         res.writeHead(200,{"Content-Type":"application/json"})
         res.write(JSON.stringify(respuesta))
         res.end()

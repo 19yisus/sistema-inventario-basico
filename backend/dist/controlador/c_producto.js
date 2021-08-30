@@ -78,25 +78,17 @@ const ControladorProducto = {
     actualizar: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const respuesta = { mensaje: "", idProducto: null, estadoRespuesta: false, tipoAlerta: "" };
         let { producto } = req.body;
-        let { id } = req.params;
-        if (producto.id_producto === id) {
-            let Producto = new m_producto_1.default();
-            Producto.setDatos(producto);
-            let resultProducto = yield Producto.actualizar();
-            if (resultProducto.rowCount > 0) {
-                respuesta.mensaje = "actualizacion completada";
-                respuesta.estadoRespuesta = true;
-                respuesta.tipoAlerta = "success";
-                respuesta.idProducto = resultProducto.rows[0].id_producto;
-            }
-            else {
-                respuesta.mensaje = "error al actualizar por que el elemento no existe en la base de datos";
-                respuesta.estadoRespuesta = true;
-                respuesta.tipoAlerta = "warning";
-            }
+        let Producto = new m_producto_1.default();
+        Producto.setDatos(producto);
+        let resultProducto = yield Producto.actualizar();
+        if (resultProducto.rowCount > 0) {
+            respuesta.mensaje = "actualizacion completada";
+            respuesta.estadoRespuesta = true;
+            respuesta.tipoAlerta = "success";
+            respuesta.idProducto = resultProducto.rows[0].id_producto;
         }
         else {
-            respuesta.mensaje = "error al actualizar el codigo del recuros que quiere actualizar no coincide con el codigo que esta enviando ";
+            respuesta.mensaje = "error al actualizar por que el elemento no existe en la base de datos";
             respuesta.estadoRespuesta = true;
             respuesta.tipoAlerta = "warning";
         }
